@@ -1,13 +1,14 @@
 import * as React from 'react';
 
-import { StyleSheet, ScrollView, Text, Image } from 'react-native';
+import { StyleSheet, ScrollView, Text, Image, TextProps } from 'react-native';
 import PngProcessor from 'react-native-png-processor';
+import type { PropsWithChildren } from 'react';
 
 export default function App() {
   const picture = Image.resolveAssetSource(require('./eit-floor.png'));
   console.log('source picture', picture);
   const [src] = React.useState<string>(picture.uri);
-  const [res, setRes] = React.useState<string>(null);
+  const [res, setRes] = React.useState<string>('');
 
   PngProcessor.makeTransparent(picture.uri)
     .then((result) => {
@@ -20,7 +21,9 @@ export default function App() {
     .catch((e) => {
       console.error('something bad happened', e);
     });
-  const Header = (props) => <Text style={styles.header}>{props.children}</Text>;
+  const Header = (props: PropsWithChildren<TextProps>) => (
+    <Text style={styles.header}>{props.children}</Text>
+  );
 
   return (
     <ScrollView style={styles.container}>
@@ -30,7 +33,7 @@ export default function App() {
       <Header>Transformed</Header>
       <Image
         style={{
-          ...styles.box
+          ...styles.box,
         }}
         source={{ uri: res }}
         resizeMode={'contain'}
