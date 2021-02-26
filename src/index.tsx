@@ -1,7 +1,7 @@
 import { NativeModules } from 'react-native';
 
 type PngProcessorType = {
-  multiply(a: number, b: number): Promise<number>;
+  makeTransparent(image_uri: string): Promise<string>;
 };
 
 const { PngProcessor } = NativeModules;
