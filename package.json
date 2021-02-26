@@ -1,6 +1,6 @@
 {
   "name": "react-native-png-processor",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A React-Native library for processing PNG files ",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
